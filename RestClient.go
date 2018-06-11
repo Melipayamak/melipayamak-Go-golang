@@ -9,6 +9,10 @@ import (
     "net/http"
 )
 
+func main() {
+	SendSMS("username", "password", "to", "from", "go rest test", false)
+}
+
 func makeRequest(jsonData map[string]string, op string) {
 
 	jsonValue, _ := json.Marshal(jsonData)
@@ -21,13 +25,7 @@ func makeRequest(jsonData map[string]string, op string) {
     }
 }
 
-func main() {
-	username := "9122088891"
-	password := "1234"
-	to := "09103155711"
-	from := "500010604095"
-	text := "Go Rest Test"
-	isFlash := false
+func SendSMS(username string, password string, to string, from string, text string, isFlash bool) {
 
     jsonData := map[string]string {
     	"username": username,
@@ -40,3 +38,48 @@ func main() {
     makeRequest(jsonData, "SendSMS")
 }
 
+func GetDeliveries2(username string, password string, recID int64) {
+	jsonData := map[string]string {
+    	"username": username,
+    	"password": password, 
+    	"recID" : strconv.FormatInt(recID, 10), 
+    }
+    makeRequest(jsonData, "GetDeliveries2")
+}
+
+func GetMessages(username string, password string, location int, from string, index string, count bool) {
+	jsonData := map[string]string {
+    	"UserName": username,
+    	"PassWord": password, 
+    	"Location" : strconv.Itoa(location), 
+    	"From" : from,
+    	"Index" : index,
+    	"Count" : strconv.FormatBool(count),
+    }
+    makeRequest(jsonData, "GetMessages")
+}
+
+func GetCredit(username string, password string) {
+	jsonData := map[string]string {
+    	"UserName": username,
+    	"PassWord": password, 
+    }
+    makeRequest(jsonData, "GetCredit")
+}
+
+
+func GetBasePrice(username string, password string) {
+	jsonData := map[string]string {
+    	"UserName": username,
+    	"PassWord": password, 
+    }
+    makeRequest(jsonData, "GetBasePrice")
+}
+
+func GetUserNumbers(username string, password string) {
+	jsonData := map[string]string {
+    	"UserName": username,
+    	"PassWord": password, 
+    }
+    makeRequest(jsonData, "GetUserNumbers")
+}
