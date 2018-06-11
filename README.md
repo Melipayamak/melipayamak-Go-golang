@@ -31,9 +31,9 @@ from := "5000..."
 to := "09123456789"
 text := "تست وب سرویس ملی پیامک"
 isFlash := false
-soapClient.SendSimpleSMS2(username, password, to, from, text, isFlash)
+SendSimpleSMS2(username, password, to, from, text, isFlash)
 //یا برای ارسال به مجموعه ای از مخاطبین
-soapClient.SendSimpleSMS(username, password, to []string, from, text, isFlash)
+SendSimpleSMS(username, password, to []string, from, text, isFlash)
 ```
 
 <div dir='rtl'>
