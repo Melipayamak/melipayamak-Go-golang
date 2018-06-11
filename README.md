@@ -31,25 +31,15 @@ from := "5000..."
 to := "09123456789"
 text := "تست وب سرویس ملی پیامک"
 isFlash := false
-soapClient := SoapClient(username, password)
-soapClient.SendSimpleSMS2(to: to, from: from, msg: text, isFlash: isFlash)
+soapClient.SendSimpleSMS2(username, password, to, from, text, isFlash)
 //یا برای ارسال به مجموعه ای از مخاطبین
-soapClient.SendSimpleSMS([]string, from, text, isFlash)
+soapClient.SendSimpleSMS(username, password, to []string, from, text, isFlash)
 ```
 
 <div dir='rtl'>
 
-از آنجا که وب سرویس ملی پیامک تنها محدود به ارسال پیامک نیست شما از طریق زیر میتوانید به وب سرویس ها دسترسی کامل داشته باشید:
-</div>
+از آنجا که وب سرویس ملی پیامک تنها محدود به ارسال پیامک نیست شما از طریق متدهای زیر میتوانید به وب سرویس ها دسترسی کامل داشته باشید
 
-```js
-// وب سرویس پیامک
-restClient := RestClient(username, password)
-soapClient := SoapClient(username, password)
-```
-
-<div dir='rtl'>
-  
 #### تفاوت های وب سرویس پیامک rest و soap
 
 از آنجا که ملی پیامک وب سرویس کاملی رو در اختیار توسعه دهندگان میگزارد برای راحتی کار با وب سرویس پیامک علاوه بر وب سرویس اصلی soap وب سرویس rest رو هم در اختیار توسعه دهندگان گزاشته شده تا راحتتر بتوانند با وب سرویس کار کنند. تفاوت اصلی این دو در تعداد متد هاییست که میتوانید با آن کار کنید. برای کار های پایه میتوان از وب سرویس rest استفاده کرد برای دسترسی بیشتر و استفاده پیشرفته تر نیز باید از وب سرویس باید از وب سرویس soap استفاده کرد. جهت مطالعه بیشتر وب سرویس ها به قسمت وب سرویس پنل خود مراجعه کنید.
