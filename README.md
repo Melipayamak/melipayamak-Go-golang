@@ -73,12 +73,8 @@ SendSimpleSMS(username, password, to []string, from, text, isFlash);
 Send(to, from, text, isFlash);
 SendSimpleSMS(to []string, from, text, isFlash);
 ```
-<div dir='rtl'>
-  در آرگومان سوم روش soap میتوانید از هر تعداد مخاطب به عنوان آرایه استفاده کنید
-</div>
 
-ticketSoapClient.ResponseTicket(username, password, ticketId, type, content, alertWithSms);
-```
+
 <div dir='rtl'>
   
 ### وب سرویس دفترچه تلفن
