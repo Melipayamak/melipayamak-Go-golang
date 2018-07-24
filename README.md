@@ -69,11 +69,219 @@ SendSimpleSMS(username, password, to []string, from, text, isFlash);
 
 #### ارسال
 
-```js
+```go
 Send(to, from, text, isFlash);
 SendSimpleSMS(to []string, from, text, isFlash);
 ```
 
+#### دریافت وضعیت ارسال
+```lua
+GetDelivery(recId);
+GetDeliveries(recIds);
+```
+
+#### لیست پیامک ها
+
+```lua
+GetMessages(location, index, count, from);
+getMessages(location, from, index, count);
+// جهت دریافت به صورت رشته ای
+GetMessagesByDate(location, from, index, count, dateFrom, dateTo);
+//جهت دریافت بر اساس تاریخ
+GetUsersMessagesByDate(location, from, index, count, dateFrom, dateTo);
+// جهت دریافت پیام های کاربران بر اساس تاریخ 
+```
+
+#### موجودی
+```lua
+GetCredit();
+```
+
+#### تعرفه پایه / دریافت قیمت قبل از ارسال
+```lua
+GetBasePrice();
+GetSmsPrice(irancellCount, mtnCount, from, text);
+```
+#### لیست شماره اختصاصی
+```lua
+GetUserNumbers();
+```
+
+#### بررسی تعداد پیامک های دریافتی
+```lua
+GetInboxCount(isRead);
+//پیش فرض خوانده نشده 
+```
+
+#### ارسال پیامک پیشرفته
+```lua
+SendSms(to, from, text, isflash, udh, recId, status);
+```
+
+#### مشاهده مشخصات پیام
+```lua
+GetMessagesReceptions(msgId, fromRows);
+```
+
+
+#### حذف پیام دریافتی
+```lua
+RemoveMessages2(location, msgIds);
+```
+
+
+#### ارسال زماندار
+```lua
+AddSchedule(to, from, text, isflash, scheduleDateTime, period);
+```
+
+#### ارسال زماندار متناظر
+```lua
+AddMultipleSchedule(to, from, text, isflash, scheduleDateTime, period);
+```
+
+
+#### ارسال سررسید
+```lua
+AddNewUsance(to, from, text, isflash, scheduleStartDateTime, countRepeat, scheduleEndDateTime, periodType);
+```
+
+#### مشاهده وضعیت ارسال زماندار
+```lua
+GetScheduleStatus(schId);
+```
+
+#### حذف پیامک زماندار
+```lua
+RemoveSchedule(schId);
+```
+
+
+####  ارسال پیامک همراه با تماس صوتی
+```lua
+SendSMSWithSpeechText(smsBody, speechBody, from, to);
+```
+
+####  ارسال پیامک همراه با تماس صوتی به صورت زمانبندی
+```lua
+SendSMSWithSpeechTextBySchduleDate(smsBody, speechBody, from, to, scheduleDate);
+```
+
+####  دریافت وضعیت پیامک همراه با تماس صوتی 
+```lua
+GetSendSMSWithSpeechTextStatus(recId);
+```
+<div dir='rtl'>
+  
+### وب سرویس ارسال انبوه/منطقه ای
+
+</div>
+
+#### دریافت شناسه شاخه های بانک شماره
+```lua
+GetBranchs(owner);
+```
+
+
+#### اضافه کردن یک بانک شماره جدید
+```lua
+AddBranch(branchName, owner);
+```
+
+#### اضافه کردن شماره به بانک
+```lua
+AddNumber(branchId, mobileNumbers);
+```
+
+#### حذف یک بانک
+```lua
+RemoveBranch(branchId);
+```
+
+#### ارسال انبوه از طریق بانک
+```lua
+AddBulk(from, branch, bulkType, title, message, rangeFrom, rangeTo, DateToSend, requestCount, rowFrom);
+```
+
+#### تعداد شماره های موجود
+```lua
+GetBulkCount(branch, rangeFrom, rangeTo);
+```
+
+#### گزارش گیری از ارسال انبوه
+```lua
+GetBulkReceptions(bulkId, fromRows);
+```
+
+
+#### تعیین وضعیت ارسال 
+```lua
+GetBulkStatus(bulkId, sent, failed, status);
+```
+
+#### تعداد ارسال های امروز
+```lua
+GetTodaySent();
+```
+
+#### تعداد ارسال های کل
+
+```lua
+GetTotalSent();
+```
+
+#### حذف ارسال منطقه ای
+```lua
+RemoveBulk(bulkId);
+```
+
+#### ارسال متناظر
+```lua
+SendMultipleSMS(to, from, text, isflash, udh, recId, status);
+```
+
+#### نمایش دهنده وضعیت گزارش گیری
+
+```lua
+UpdateBulkDelivery(bulkId);
+```
+<div dir='rtl'>
+  
+### وب سرویس تیکت
+
+</div>
+
+#### ثبت تیکت جدید
+```lua
+AddTicket(title, content, aletWithSms);
+```
+
+#### جستجو و دریافت تیکت ها
+
+```lua
+GetReceivedTickets(ticketOwner, ticketType, keyword);
+```
+
+#### دریافت تعداد تیکت های کاربران
+```lua
+GetReceivedTicketsCount(ticketType);
+```
+
+#### دریافت تیکت های ارسال شده
+```lua
+GetSentTickets(ticketOwner, ticketType, keyword);
+```
+
+#### دریافت تعداد تیکت های ارسال شده
+```lua
+GetSentTicketsCount(ticketType);
+```
+
+
+#### پاسخگویی به تیکت
+```lua
+ResponseTicket(ticketId, type, content, alertWithSms);
+```
 
 <div dir='rtl'>
   
