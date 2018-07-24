@@ -24,7 +24,7 @@
 </div>
 
 
-```js
+```go
 username := "username";
 password := "password";
 from := "5000...";
@@ -75,14 +75,14 @@ SendSimpleSMS(to []string, from, text, isFlash);
 ```
 
 #### دریافت وضعیت ارسال
-```lua
+```go
 GetDelivery(recId);
-GetDeliveries(recIds);
+GetDeliveries(recIds []string);
 ```
 
 #### لیست پیامک ها
 
-```lua
+```go
 GetMessages(location, index, count, from);
 getMessages(location, from, index, count);
 // جهت دریافت به صورت رشته ای
@@ -93,82 +93,82 @@ GetUsersMessagesByDate(location, from, index, count, dateFrom, dateTo);
 ```
 
 #### موجودی
-```lua
+```go
 GetCredit();
 ```
 
 #### تعرفه پایه / دریافت قیمت قبل از ارسال
-```lua
+```go
 GetBasePrice();
 GetSmsPrice(irancellCount, mtnCount, from, text);
 ```
 #### لیست شماره اختصاصی
-```lua
+```go
 GetUserNumbers();
 ```
 
 #### بررسی تعداد پیامک های دریافتی
-```lua
+```go
 GetInboxCount(isRead);
 //پیش فرض خوانده نشده 
 ```
 
 #### ارسال پیامک پیشرفته
-```lua
-SendSms(to, from, text, isflash, udh, recId, status);
+```go
+SendSms(to []string, from, text, isflash, udh, recId []string, status []string);
 ```
 
 #### مشاهده مشخصات پیام
-```lua
+```go
 GetMessagesReceptions(msgId, fromRows);
 ```
 
 
 #### حذف پیام دریافتی
-```lua
+```go
 RemoveMessages2(location, msgIds);
 ```
 
 
 #### ارسال زماندار
-```lua
+```go
 AddSchedule(to, from, text, isflash, scheduleDateTime, period);
 ```
 
 #### ارسال زماندار متناظر
-```lua
-AddMultipleSchedule(to, from, text, isflash, scheduleDateTime, period);
+```go
+AddMultipleSchedule(to []string, from, text []string, isflash, scheduleDateTime []string, period);
 ```
 
 
 #### ارسال سررسید
-```lua
+```go
 AddNewUsance(to, from, text, isflash, scheduleStartDateTime, countRepeat, scheduleEndDateTime, periodType);
 ```
 
 #### مشاهده وضعیت ارسال زماندار
-```lua
+```go
 GetScheduleStatus(schId);
 ```
 
 #### حذف پیامک زماندار
-```lua
+```go
 RemoveSchedule(schId);
 ```
 
 
 ####  ارسال پیامک همراه با تماس صوتی
-```lua
+```go
 SendSMSWithSpeechText(smsBody, speechBody, from, to);
 ```
 
 ####  ارسال پیامک همراه با تماس صوتی به صورت زمانبندی
-```lua
+```go
 SendSMSWithSpeechTextBySchduleDate(smsBody, speechBody, from, to, scheduleDate);
 ```
 
 ####  دریافت وضعیت پیامک همراه با تماس صوتی 
-```lua
+```go
 GetSendSMSWithSpeechTextStatus(recId);
 ```
 <div dir='rtl'>
@@ -178,71 +178,71 @@ GetSendSMSWithSpeechTextStatus(recId);
 </div>
 
 #### دریافت شناسه شاخه های بانک شماره
-```lua
+```go
 GetBranchs(owner);
 ```
 
 
 #### اضافه کردن یک بانک شماره جدید
-```lua
+```go
 AddBranch(branchName, owner);
 ```
 
 #### اضافه کردن شماره به بانک
-```lua
-AddNumber(branchId, mobileNumbers);
+```go
+AddNumber(branchId, mobileNumbers []string);
 ```
 
 #### حذف یک بانک
-```lua
+```go
 RemoveBranch(branchId);
 ```
 
 #### ارسال انبوه از طریق بانک
-```lua
+```go
 AddBulk(from, branch, bulkType, title, message, rangeFrom, rangeTo, DateToSend, requestCount, rowFrom);
 ```
 
 #### تعداد شماره های موجود
-```lua
+```go
 GetBulkCount(branch, rangeFrom, rangeTo);
 ```
 
 #### گزارش گیری از ارسال انبوه
-```lua
+```go
 GetBulkReceptions(bulkId, fromRows);
 ```
 
 
 #### تعیین وضعیت ارسال 
-```lua
+```go
 GetBulkStatus(bulkId, sent, failed, status);
 ```
 
 #### تعداد ارسال های امروز
-```lua
+```go
 GetTodaySent();
 ```
 
 #### تعداد ارسال های کل
 
-```lua
+```go
 GetTotalSent();
 ```
 
 #### حذف ارسال منطقه ای
-```lua
+```go
 RemoveBulk(bulkId);
 ```
 
 #### ارسال متناظر
-```lua
-SendMultipleSMS(to, from, text, isflash, udh, recId, status);
+```go
+SendMultipleSMS(to []string, from, text, isflash, udh, recId []string, status);
 ```
 
 #### نمایش دهنده وضعیت گزارش گیری
 
-```lua
+```go
 UpdateBulkDelivery(bulkId);
 ```
 <div dir='rtl'>
@@ -252,34 +252,34 @@ UpdateBulkDelivery(bulkId);
 </div>
 
 #### ثبت تیکت جدید
-```lua
+```go
 AddTicket(title, content, aletWithSms);
 ```
 
 #### جستجو و دریافت تیکت ها
 
-```lua
+```go
 GetReceivedTickets(ticketOwner, ticketType, keyword);
 ```
 
 #### دریافت تعداد تیکت های کاربران
-```lua
+```go
 GetReceivedTicketsCount(ticketType);
 ```
 
 #### دریافت تیکت های ارسال شده
-```lua
+```go
 GetSentTickets(ticketOwner, ticketType, keyword);
 ```
 
 #### دریافت تعداد تیکت های ارسال شده
-```lua
+```go
 GetSentTicketsCount(ticketType);
 ```
 
 
 #### پاسخگویی به تیکت
-```lua
+```go
 ResponseTicket(ticketId, type, content, alertWithSms);
 ```
 
@@ -290,40 +290,40 @@ ResponseTicket(ticketId, type, content, alertWithSms);
 </div>
 
 #### اضافه کردن گروه جدید
-```js
+```go
 AddGroup(username, password, groupName, Descriptions, showToChilds);
 ```
 
 #### اضافه کردن کاربر جدید
-```js
+```go
 AddContact(username, password, options);
 
 ```
 
 #### بررسی موجود بودن شماره در دفترچه تلفن
-```js
+```go
 CheckMobileExistInContact(username, password, mobileNumber);
 ```
 
 #### دریافت اطلاعات دفترچه تلفن
-```js
+```go
 GetContacts(username, password, groupId, keyword, count);
 ```
 #### دریافت گروه ها
-```js
+```go
 GetGroups(username, password);
 ```
 #### ویرایش مخاطب
-```js
+```go
 ChangeContact(username, password, options);
 ```
 
 #### حذف مخاطب
-```js
+```go
 RemoveContact(username, password, mobilenumber);
 ```
 #### دریافت اطلاعات مناسبت های فرد
-```js
+```go
 GetContactEvents(username, password, contactId);
 ```
 
@@ -334,93 +334,93 @@ GetContactEvents(username, password, contactId);
 </div>
 
 #### ثبت فیش واریزی
-```js
+```go
 AddPayment(username, password, options);
 ```
 
 #### اضافه کردن کاربر جدید در سامانه
-```js
+```go
 AddUser(username, password, options);
 
 ```
 
 #### اضافه کردن کاربر جدید در سامانه(کامل)
-```js
+```go
 AddUserComplete(username, password, options);
 ```
 
 #### اضافه کردن کاربر جدید در سامانه(WithLocation)
-```js
+```go
 AddUserWithLocation(username, password, options);
 ```
 #### بدست آوردن ID کاربر
-```js
+```go
 AuthenticateUser(username, password);
 ```
 #### تغییر اعتبار
-```js
+```go
 ChangeUserCredit(username, password, amount, description, targetUsername, GetTax);
 ```
 
 #### فراموشی رمز عبور
-```js
+```go
 ForgotPassword(username, password, mobileNumber, emailAddress, targetUsername);
 ```
 #### دریافت تعرفه پایه کاربر
-```js
+```go
 GetUserBasePrice(username, password, targetUsername);
 ```
 
 #### دریافت اعتبار کاربر
-```js
+```go
 GetUserCredit(username, password, targetUsername);
 ```
 
 #### دریافت مشخصات کاربر
-```js
+```go
 GetUserDetails(username, password, targetUsername);
 ```
 
 #### دریافت شماره های کاربر
-```js
+```go
 GetUserNumbers(username, password);
 ```
 
 #### دریافت تراکنش های کاربر
-```js
+```go
 GetUserTransactions(username, password, targetUsername, creditType, dateFrom, dateTo, keyword);
 ```
 
 #### دریافت اطلاعات  کاربران
-```js
+```go
 GetUsers(username, password);
 ```
 
 
 #### دریافت اطلاعات  فیلترینگ
-```js
+```go
 HasFilter(username, password, text);
 ```
 
 
 ####  حذف کاربر
-```js
+```go
 RemoveUser(username, password, targetUsername);
 ```
 
 
 #### مشاهده استان ها
-```js
+```go
 GetProvinces(username, password);
 ```
 
 #### مشاهده کد شهرستان 
-```js
+```go
 GetCities(username, password, provinceId);
 ```
 
 
 #### مشاهده تاریخ انقضای کاربر 
-```js
+```go
 GetExpireDate(username, password);
 ```
