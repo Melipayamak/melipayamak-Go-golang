@@ -70,25 +70,25 @@ SendSimpleSMS(username, password, to []string, from, text, isFlash);
 #### ارسال
 
 ```go
-Send(to, from, text, isFlash);
-SendSimpleSMS(to []string, from, text, isFlash);
+Send(username, password, to, from, text, isFlash);
+SendSimpleSMS(username, password, to []string, from, text, isFlash);
 ```
 
 #### دریافت وضعیت ارسال
 ```go
-GetDelivery(recId);
-GetDeliveries(recIds []string);
+GetDelivery(username, password, recId);
+GetDeliveries(username, password, recIds []string);
 ```
 
 #### لیست پیامک ها
 
 ```go
-GetMessages(location, index, count, from);
-getMessages(location, from, index, count);
+GetMessages(username, password, location, index, count, from);
+getMessages(username, password, location, from, index, count);
 // جهت دریافت به صورت رشته ای
-GetMessagesByDate(location, from, index, count, dateFrom, dateTo);
+GetMessagesByDate(username, password, location, from, index, count, dateFrom, dateTo);
 //جهت دریافت بر اساس تاریخ
-GetUsersMessagesByDate(location, from, index, count, dateFrom, dateTo);
+GetUsersMessagesByDate(username, password, location, from, index, count, dateFrom, dateTo);
 // جهت دریافت پیام های کاربران بر اساس تاریخ 
 ```
 
@@ -99,77 +99,77 @@ GetCredit();
 
 #### تعرفه پایه / دریافت قیمت قبل از ارسال
 ```go
-GetBasePrice();
-GetSmsPrice(irancellCount, mtnCount, from, text);
+GetBasePrice(username, password);
+GetSmsPrice(username, password, irancellCount, mtnCount, from, text);
 ```
 #### لیست شماره اختصاصی
 ```go
-GetUserNumbers();
+GetUserNumbers(username, password);
 ```
 
 #### بررسی تعداد پیامک های دریافتی
 ```go
-GetInboxCount(isRead);
+GetInboxCount(username, password, isRead);
 //پیش فرض خوانده نشده 
 ```
 
 #### ارسال پیامک پیشرفته
 ```go
-SendSms(to []string, from, text, isflash, udh, recId []string, status []string);
+SendSms(username, password, to []string, from, text, isflash, udh, recId []string, status []string);
 ```
 
 #### مشاهده مشخصات پیام
 ```go
-GetMessagesReceptions(msgId, fromRows);
+GetMessagesReceptions(username, password, msgId, fromRows);
 ```
 
 
 #### حذف پیام دریافتی
 ```go
-RemoveMessages2(location, msgIds);
+RemoveMessages2(username, password, location, msgIds);
 ```
 
 
 #### ارسال زماندار
 ```go
-AddSchedule(to, from, text, isflash, scheduleDateTime, period);
+AddSchedule(username, password, to, from, text, isflash, scheduleDateTime, period);
 ```
 
 #### ارسال زماندار متناظر
 ```go
-AddMultipleSchedule(to []string, from, text []string, isflash, scheduleDateTime []string, period);
+AddMultipleSchedule(username, password, to []string, from, text []string, isflash, scheduleDateTime []string, period);
 ```
 
 
 #### ارسال سررسید
 ```go
-AddNewUsance(to, from, text, isflash, scheduleStartDateTime, countRepeat, scheduleEndDateTime, periodType);
+AddNewUsance(username, password, to, from, text, isflash, scheduleStartDateTime, countRepeat, scheduleEndDateTime, periodType);
 ```
 
 #### مشاهده وضعیت ارسال زماندار
 ```go
-GetScheduleStatus(schId);
+GetScheduleStatus(username, password, schId);
 ```
 
 #### حذف پیامک زماندار
 ```go
-RemoveSchedule(schId);
+RemoveSchedule(username, password, schId);
 ```
 
 
 ####  ارسال پیامک همراه با تماس صوتی
 ```go
-SendSMSWithSpeechText(smsBody, speechBody, from, to);
+SendSMSWithSpeechText(username, password, smsBody, speechBody, from, to);
 ```
 
 ####  ارسال پیامک همراه با تماس صوتی به صورت زمانبندی
 ```go
-SendSMSWithSpeechTextBySchduleDate(smsBody, speechBody, from, to, scheduleDate);
+SendSMSWithSpeechTextBySchduleDate(username, password, smsBody, speechBody, from, to, scheduleDate);
 ```
 
 ####  دریافت وضعیت پیامک همراه با تماس صوتی 
 ```go
-GetSendSMSWithSpeechTextStatus(recId);
+GetSendSMSWithSpeechTextStatus(username, password, recId);
 ```
 <div dir='rtl'>
   
@@ -179,71 +179,71 @@ GetSendSMSWithSpeechTextStatus(recId);
 
 #### دریافت شناسه شاخه های بانک شماره
 ```go
-GetBranchs(owner);
+GetBranchs(username, password, owner);
 ```
 
 
 #### اضافه کردن یک بانک شماره جدید
 ```go
-AddBranch(branchName, owner);
+AddBranch(username, password, branchName, owner);
 ```
 
 #### اضافه کردن شماره به بانک
 ```go
-AddNumber(branchId, mobileNumbers []string);
+AddNumber(username, password, branchId, mobileNumbers []string);
 ```
 
 #### حذف یک بانک
 ```go
-RemoveBranch(branchId);
+RemoveBranch(username, password, branchId);
 ```
 
 #### ارسال انبوه از طریق بانک
 ```go
-AddBulk(from, branch, bulkType, title, message, rangeFrom, rangeTo, DateToSend, requestCount, rowFrom);
+AddBulk(username, password, from, branch, bulkType, title, message, rangeFrom, rangeTo, DateToSend, requestCount, rowFrom);
 ```
 
 #### تعداد شماره های موجود
 ```go
-GetBulkCount(branch, rangeFrom, rangeTo);
+GetBulkCount(username, password, branch, rangeFrom, rangeTo);
 ```
 
 #### گزارش گیری از ارسال انبوه
 ```go
-GetBulkReceptions(bulkId, fromRows);
+GetBulkReceptions(username, password, bulkId, fromRows);
 ```
 
 
 #### تعیین وضعیت ارسال 
 ```go
-GetBulkStatus(bulkId, sent, failed, status);
+GetBulkStatus(username, password, bulkId, sent, failed, status);
 ```
 
 #### تعداد ارسال های امروز
 ```go
-GetTodaySent();
+GetTodaySent(username, password);
 ```
 
 #### تعداد ارسال های کل
 
 ```go
-GetTotalSent();
+GetTotalSent(username, password);
 ```
 
 #### حذف ارسال منطقه ای
 ```go
-RemoveBulk(bulkId);
+RemoveBulk(username, password, bulkId);
 ```
 
 #### ارسال متناظر
 ```go
-SendMultipleSMS(to []string, from, text, isflash, udh, recId []string, status);
+SendMultipleSMS(username, password, to []string, from, text, isflash, udh, recId []string, status);
 ```
 
 #### نمایش دهنده وضعیت گزارش گیری
 
 ```go
-UpdateBulkDelivery(bulkId);
+UpdateBulkDelivery(username, password, bulkId);
 ```
 <div dir='rtl'>
   
@@ -253,34 +253,34 @@ UpdateBulkDelivery(bulkId);
 
 #### ثبت تیکت جدید
 ```go
-AddTicket(title, content, aletWithSms);
+AddTicket(username, password, title, content, aletWithSms);
 ```
 
 #### جستجو و دریافت تیکت ها
 
 ```go
-GetReceivedTickets(ticketOwner, ticketType, keyword);
+GetReceivedTickets(username, password, ticketOwner, ticketType, keyword);
 ```
 
 #### دریافت تعداد تیکت های کاربران
 ```go
-GetReceivedTicketsCount(ticketType);
+GetReceivedTicketsCount(username, password, ticketType);
 ```
 
 #### دریافت تیکت های ارسال شده
 ```go
-GetSentTickets(ticketOwner, ticketType, keyword);
+GetSentTickets(username, password, ticketOwner, ticketType, keyword);
 ```
 
 #### دریافت تعداد تیکت های ارسال شده
 ```go
-GetSentTicketsCount(ticketType);
+GetSentTicketsCount(username, password, ticketType);
 ```
 
 
 #### پاسخگویی به تیکت
 ```go
-ResponseTicket(ticketId, type, content, alertWithSms);
+ResponseTicket(username, password, ticketId, type, content, alertWithSms);
 ```
 
 <div dir='rtl'>
