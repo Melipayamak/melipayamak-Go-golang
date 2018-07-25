@@ -94,7 +94,7 @@ GetUsersMessagesByDate(username, password, location, from, index, count, dateFro
 
 #### موجودی
 ```go
-GetCredit();
+GetCredit(username, password);
 ```
 
 #### تعرفه پایه / دریافت قیمت قبل از ارسال
