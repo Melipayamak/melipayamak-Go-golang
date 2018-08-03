@@ -143,7 +143,7 @@ AddMultipleSchedule(username, password, to []string, from, text []string, isflas
 
 #### ارسال سررسید
 ```go
-AddNewUsance(username, password, to, from, text, isflash, scheduleStartDateTime, countRepeat, scheduleEndDateTime, periodType);
+AddUsance(username, password, to, from, text, isflash, scheduleStartDateTime, repeatAfterDays, scheduleEndDateTime);
 ```
 
 #### مشاهده وضعیت ارسال زماندار
