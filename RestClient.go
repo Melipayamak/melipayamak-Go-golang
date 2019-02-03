@@ -38,6 +38,18 @@ func SendSMS(username string, password string, to string, from string, text stri
     makeRequest(jsonData, "SendSMS")
 }
 
+func SendByBaseNumber(username string, password string, text string, to string, bodyId int64) {
+
+    jsonData := map[string]string {
+    	"username": username,
+    	"password": password, 
+    	"text" : text, 
+    	"to" : to, 
+    	"bodyId" : strconv.FormatInt(bodyId, 10)
+    }
+    makeRequest(jsonData, "BaseServiceNumber")
+}
+
 func GetDeliveries2(username string, password string, recID int64) {
 	jsonData := map[string]string {
     	"username": username,
