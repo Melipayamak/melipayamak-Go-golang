@@ -74,6 +74,14 @@ Send(username, password, to, from, text, isFlash);
 SendSimpleSMS(username, password, to []string, from, text, isFlash);
 ```
 
+#### ارسال از خط خدماتی اشتراکی
+
+```go
+SendByBaseNumber(username, password, text, to, bodyId);
+//soap
+SendByBaseNumber2(username, password, text, to, bodyId);
+```
+
 #### دریافت وضعیت ارسال
 ```go
 GetDelivery(username, password, recId);
