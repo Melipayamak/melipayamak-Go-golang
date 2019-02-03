@@ -128,6 +128,22 @@ func SendWithDomain(username string, password string, to string, from string, ms
  
     makeRequestToSend(wsReq);
 }
+func SendByBaseNumber(username string, password string, text []string, to string, bodyId int) {
+
+    _text := "<string>" + strings.Join(text, "</string><string>") + "</string>";
+
+    _func := "SendByBaseNumber";
+	wsReq := "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><" + _func + " xmlns=\"http://tempuri.org/\"><username>" + username + "</username><password>" + password + "</password><text>" + _text + "</text><to>" + to + "</to><bodyId>" + strconv.Itoa(bodyId) + "</bodyId></"+ _func +"></soap:Body></soap:Envelope>";
+ 
+    makeRequestToSend(wsReq)
+}
+func SendByBaseNumber2(username string, password string, text string, to string, bodyId int) {
+
+    _func := "SendByBaseNumber2";
+	wsReq := "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><" + _func + " xmlns=\"http://tempuri.org/\"><username>" + username + "</username><password>" + password + "</password><text>" + text + "</text><to>" + to + "</to><bodyId>" + strconv.Itoa(bodyId) + "</bodyId></"+ _func +"></soap:Body></soap:Envelope>";
+ 
+    makeRequestToSend(wsReq)
+}
 func getMessages(username string, password string, location int, from string, index int, count int) {
 
     _func := "getMessages";
