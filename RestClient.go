@@ -45,7 +45,7 @@ func SendByBaseNumber(username string, password string, text string, to string, 
     	"password": password, 
     	"text" : text, 
     	"to" : to, 
-    	"bodyId" : strconv.FormatInt(bodyId, 10)
+    	"bodyId" : strconv.FormatInt(bodyId, 10),
     }
     makeRequest(jsonData, "BaseServiceNumber")
 }
