@@ -1,6 +1,10 @@
 # melipayamak Go (golang)
 
-<div dir='rtl'>
+
+![Go](https://img.shields.io/badge/Go-1.18-00ADD8?logo=go&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
+![Status](https://img.shields.io/badge/Status-Stable-brightgreen)
 
 ### معرفی وب سرویس ملی پیامک
 ملی پیامک یک وب سرویس کامل برای ارسال و دریافت پیامک و پیامک صوتی و مدیریت کامل خدمات دیگر است که براحتی میتوانید از آن استفاده کنید.
@@ -9,31 +13,87 @@
 
 ### نصب
 
-<p>قبل از نصب نیاز به ثبت نام در سایت ملی پیامک دارید.</p>
+قبل از نصب نیاز به ثبت نام در سایت ملی پیامک دارید.
 
 [**ثبت نام به همراه دریافت 200 پیامک هدیه جهت تست وبسرویس**](http://www.melipayamak.com/)
 
-</div>
 
-<div dir='rtl'>
-  
 #### نحوه استفاده
 
-نمونه کد برای ارسال پیامک
+دستورات زیر برای ایجاد پروژه و افزودن SDK ملی پیامک هستند
 
-</div>
 
+```bash
+go mod init sms-test
+go get github.com/Melipayamak/melipayamak-Go-golang
+```
+
+نمونه کد:
 
 ```go
-username := "username";
-password := "password";
-from := "5000...";
-to := "09123456789";
-text := "تست وب سرویس ملی پیامک";
-isFlash := false;
-SendSimpleSMS2(username, password, to, from, text, isFlash);
-//یا برای ارسال به مجموعه ای از مخاطبین
-SendSimpleSMS(username, password, to []string, from, text, isFlash);
+package main
+
+import (
+    "context"
+    "fmt"
+
+    melipayamak "github.com/Melipayamak/melipayamak-Go-golang/soap"
+)
+
+func main() {
+    client := melipayamak.NewSOAPClient("username", "password", nil)
+
+    response, err := client.SendSimpleSMS2(
+        context.Background(),
+        "09123456789",
+        "5000xxx",
+        "test sms from a golang project",
+        false,
+    )
+
+    if err != nil {
+        panic(err)
+    }
+
+    fmt.Println(string(response))
+
+    // async
+	result := <-client.SendSimpleSMS2Async(
+		context.Background(),
+		"09123456789",
+        "5000xxx",
+        "test sms from a golang project",
+		false,
+	)
+
+	if result.Err != nil {
+		panic(result.Err)
+	}
+
+	fmt.Println(string(result.Value))
+}
+```
+
+در صورتی که قبلا این SDK را به پروژه افزوده اید و قصد به روزرسانی آن را دارید از دستور زیر استفاده کنید
+
+To explicitly request the latest version:
+
+```bash
+go get github.com/Melipayamak/melipayamak-Go-golang@latest
+```
+اگر به روزرسانی ناموفق بود
+
+```bash
+go clean -modcache
+GOPROXY=direct go get github.com/Melipayamak/melipayamak-Go-golang/soap@master
+go list -m -json github.com/Melipayamak/melipayamak-Go-golang
+```
+<!-- go get github.com/Melipayamak/melipayamak-Go-golang@latest -->
+
+برای اجرای پروژه مدنظر:
+
+```bash
+go run .
 ```
 
 <div dir='rtl'>
@@ -123,7 +183,7 @@ GetInboxCount(username, password, isRead);
 
 #### ارسال پیامک پیشرفته
 ```go
-SendSms(username, password, to []string, from, text, isflash, udh, recId []string, status []string);
+SendSms(username, password, to []string, from, text, isflash, udh);
 ```
 
 #### مشاهده مشخصات پیام
@@ -454,4 +514,11 @@ GetCities(username, password, provinceId);
 #### مشاهده تاریخ انقضای کاربر 
 ```go
 GetExpireDate(username, password);
+```
+
+
+## Running Tests
+
+```bash
+go test -v ./...
 ```
