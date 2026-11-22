@@ -6,7 +6,7 @@ import (
 
 func SendSMSAsync(username string, password string, to string, from string, text string, isFlash bool) <-chan Result[string] {
 
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"username": username,
 		"password": password,
 		"to":       to,
@@ -25,7 +25,7 @@ func SendSMSAsync(username string, password string, to string, from string, text
 
 func SendByBaseNumberAsync(username string, password string, text string, to string, bodyId int64) <-chan Result[string] {
 
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"username": username,
 		"password": password,
 		"text":     text,
@@ -42,7 +42,7 @@ func SendByBaseNumberAsync(username string, password string, text string, to str
 }
 
 func GetDeliveries2Async(username string, password string, recID int64) <-chan Result[string] {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"username": username,
 		"password": password,
 		"recID":    strconv.FormatInt(recID, 10),
@@ -57,7 +57,7 @@ func GetDeliveries2Async(username string, password string, recID int64) <-chan R
 }
 
 func GetMessagesAsync(username string, password string, location int, from string, index string, count bool) <-chan Result[string] {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"UserName": username,
 		"PassWord": password,
 		"Location": strconv.Itoa(location),
@@ -75,7 +75,7 @@ func GetMessagesAsync(username string, password string, location int, from strin
 }
 
 func GetCreditAsync(username string, password string) <-chan Result[string] {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"UserName": username,
 		"PassWord": password,
 	}
@@ -89,7 +89,7 @@ func GetCreditAsync(username string, password string) <-chan Result[string] {
 }
 
 func GetBasePriceAsync(username string, password string) <-chan Result[string] {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"UserName": username,
 		"PassWord": password,
 	}
@@ -103,7 +103,7 @@ func GetBasePriceAsync(username string, password string) <-chan Result[string] {
 }
 
 func GetUserNumbersAsync(username string, password string) <-chan Result[string] {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"UserName": username,
 		"PassWord": password,
 	}
@@ -117,12 +117,12 @@ func GetUserNumbersAsync(username string, password string) <-chan Result[string]
 }
 
 func SendMultipleSMSAsync(username string, password string, from string, to []string, text []string) <-chan Result[string] {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"UserName": username,
 		"PassWord": password,
 		"From":     from,
-		"to":       RESTArray(to),
-		"text":     RESTArray(text),
+		"to":       to,
+		"text":     text,
 	}
 	result := make(chan Result[string], 1)
 	go func() {

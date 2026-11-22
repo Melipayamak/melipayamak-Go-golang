@@ -6,7 +6,7 @@ import (
 
 func SendSMS(username string, password string, to string, from string, text string, isFlash bool) (string, error) {
 
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"username": username,
 		"password": password,
 		"to":       to,
@@ -19,7 +19,7 @@ func SendSMS(username string, password string, to string, from string, text stri
 
 func SendByBaseNumber(username string, password string, text string, to string, bodyId int64) (string, error) {
 
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"username": username,
 		"password": password,
 		"text":     text,
@@ -30,7 +30,7 @@ func SendByBaseNumber(username string, password string, text string, to string, 
 }
 
 func GetDeliveries2(username string, password string, recID int64) (string, error) {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"username": username,
 		"password": password,
 		"recID":    strconv.FormatInt(recID, 10),
@@ -39,7 +39,7 @@ func GetDeliveries2(username string, password string, recID int64) (string, erro
 }
 
 func GetMessages(username string, password string, location int, from string, index string, count bool) (string, error) {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"UserName": username,
 		"PassWord": password,
 		"Location": strconv.Itoa(location),
@@ -51,7 +51,7 @@ func GetMessages(username string, password string, location int, from string, in
 }
 
 func GetCredit(username string, password string) (string, error) {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"UserName": username,
 		"PassWord": password,
 	}
@@ -59,7 +59,7 @@ func GetCredit(username string, password string) (string, error) {
 }
 
 func GetBasePrice(username string, password string) (string, error) {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"UserName": username,
 		"PassWord": password,
 	}
@@ -67,7 +67,7 @@ func GetBasePrice(username string, password string) (string, error) {
 }
 
 func GetUserNumbers(username string, password string) (string, error) {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"UserName": username,
 		"PassWord": password,
 	}
@@ -76,7 +76,7 @@ func GetUserNumbers(username string, password string) (string, error) {
 
 // v2
 func SendOTP(username string, password string, to, from, code string) (string, error) {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"UserName": username,
 		"PassWord": password,
 		"to":       to,
@@ -87,408 +87,12 @@ func SendOTP(username string, password string, to, from, code string) (string, e
 }
 
 func SendMultipleSMS(username string, password string, from string, to []string, text []string) (string, error) {
-	jsonData := map[string]string{
+	jsonData := map[string]any{
 		"UserName": username,
 		"PassWord": password,
 		"From":     from,
-		"to":       RESTArray(to),
-		"text":     RESTArray(text),
+		"to":       to,
+		"text":     text,
 	}
 	return invoke(jsonData, RESTSendUrl, "SendMultipleSMS")
 }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
-
-// func GetMessages(username string, password string) {
-// 	jsonData := map[string]string{
-// 		"UserName": username,
-// 		"PassWord": password,
-// 		"Location": strconv.Itoa(location),
-// 		"From":     from,
-// 		"Index":    index,
-// 		"Count":    strconv.FormatBool(count),
-// 	}
-// 	invoke(jsonData, RESTSendUrl, "GetMessages")
-// }
