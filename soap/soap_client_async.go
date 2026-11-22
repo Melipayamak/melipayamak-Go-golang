@@ -487,3 +487,122 @@ func (c *SOAPClient) SendSMSWithSpeechTextBySchduleDateAsync(ctx context.Context
 func (c *SOAPClient) UploadVoiceFileAsync(ctx context.Context, title string, base64StringFile string) <-chan Result[[]byte] {
 	return Async(func() ([]byte, error) { return c.UploadVoiceFile(ctx, title, base64StringFile) })
 }
+
+// v2
+func (c *SOAPClient) SendByBaseNumber3Async(ctx context.Context, text string, to string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.SendByBaseNumber3(ctx, text, to) })
+}
+
+func (c *SOAPClient) SendByBaseNumber4Async(ctx context.Context, text string, to string, bodyId int, smsPrice int) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.SendByBaseNumber4(ctx, text, to, bodyId, smsPrice) })
+}
+
+func (c *SOAPClient) SendOtp2Async(ctx context.Context, to string, from string, code string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.SendOtp2(ctx, to, from, code) })
+}
+
+func (c *SOAPClient) SendSms2Async(ctx context.Context, to []string, from string, text string, isflash bool, udh string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.SendSms2(ctx, to, from, text, isflash, udh) })
+}
+
+func (c *SOAPClient) AddContact2Async(ctx context.Context, groupIds, firstname, lastname, gender, corporation, mobilenumber string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) {
+		return c.AddContact2(ctx, groupIds, firstname, lastname, gender, corporation, mobilenumber)
+	})
+}
+
+func (c *SOAPClient) ChangeContact2Async(ctx context.Context, contactId int, mobilenumber, firstname, lastname, nickname, corporation, phone, fax, email, gender string, province int, city int, address string, postalCode string, additionaltext string, descriptions string, contactStatus int, birthdate string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) {
+		return c.ChangeContact2(ctx, contactId, mobilenumber, firstname, lastname, nickname, corporation, phone, fax, email, gender, province, city, address, postalCode, additionaltext, descriptions, contactStatus, birthdate)
+	})
+}
+
+func (c *SOAPClient) RemoveContact2Async(ctx context.Context, contactId, groupId int) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.RemoveContact2(ctx, contactId, groupId) })
+}
+
+func (c *SOAPClient) GetMultipleSMS3DeliveriesAsync(ctx context.Context, Ids []int64) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.GetMultipleSMS3Deliveries(ctx, Ids) })
+}
+
+func (c *SOAPClient) AddScheduleSendByBaseNumber2Async(ctx context.Context, text, to, scheduleDate string, bodyId int) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.AddScheduleSendByBaseNumber2(ctx, text, to, scheduleDate, bodyId) })
+}
+
+func (c *SOAPClient) GetScheduleDetailsAsync(ctx context.Context, scheduleId int) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.GetScheduleDetails(ctx, scheduleId) })
+}
+
+func (c *SOAPClient) GetSendSpeechTextStatusAsync(ctx context.Context, recId int64) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.GetSendSpeechTextStatus(ctx, recId) })
+}
+
+func (c *SOAPClient) GetSendSpeechTextStatusesAsync(ctx context.Context, recIds []int64) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.GetSendSpeechTextStatuses(ctx, recIds) })
+}
+
+func (c *SOAPClient) SendSpeechTextAsync(ctx context.Context, text, to string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.SendSpeechText(ctx, text, to) })
+}
+
+func (c *SOAPClient) SendVoiceOtpAsync(ctx context.Context, to, code string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.SendVoiceOtp(ctx, to, code) })
+}
+
+func (c *SOAPClient) AddNumberBulkAsync(ctx context.Context, from, title, message, receivers, DateToSend string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.AddNumberBulk(ctx, from, title, message, receivers, DateToSend) })
+}
+
+func (c *SOAPClient) AddNumberBulk2Async(ctx context.Context, from, _body string, to []string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.AddNumberBulk2(ctx, from, _body, to) })
+}
+
+func (c *SOAPClient) GetBulkDeliveriesAsync(ctx context.Context, recIds []int64) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.GetBulkDeliveries(ctx, recIds) })
+}
+
+func (c *SOAPClient) GetBulkDeliveries2Async(ctx context.Context, recId string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.GetBulkDeliveries2(ctx, recId) })
+}
+
+func (c *SOAPClient) GetBulkDetailsAsync(ctx context.Context, bulkdId int) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.GetBulkDetails(ctx, bulkdId) })
+}
+
+func (c *SOAPClient) SendSmsToContactAsync(ctx context.Context, message, title, from, groupId, dateToSend string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.SendSmsToContact(ctx, message, title, from, groupId, dateToSend) })
+}
+
+func (c *SOAPClient) GetSmartSMSDeliveriesAsync(ctx context.Context, ids []int64) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.GetSmartSMSDeliveries(ctx, ids) })
+}
+
+func (c *SOAPClient) GetSmartSMSDetailsAsync(ctx context.Context, id int64) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.GetSmartSMSDetails(ctx, id) })
+}
+
+func (c *SOAPClient) SendMultipleSmartSMSAsync(ctx context.Context, to, text []string, from, fromSupportOne, fromSupportTwo string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) {
+		return c.SendMultipleSmartSMS(ctx, to, text, from, fromSupportOne, fromSupportTwo)
+	})
+}
+
+func (c *SOAPClient) SendSmartSMSAsync(ctx context.Context, to, text, from, fromSupportOne, fromSupportTwo string) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.SendSmartSMS(ctx, to, text, from, fromSupportOne, fromSupportTwo) })
+}
+
+func (c *SOAPClient) AddBlackListAsync(ctx context.Context, number string, _type int) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.AddBlackList(ctx, number, _type) })
+}
+
+func (c *SOAPClient) AddMobileAsync(ctx context.Context, listId, _type int, mobileNumbers []string, addBySms bool) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.AddMobile(ctx, listId, _type, mobileNumbers, addBySms) })
+}
+
+func (c *SOAPClient) GetBlackListsAsync(ctx context.Context) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.GetBlackLists(ctx) })
+}
+
+func (c *SOAPClient) GetUserCredit2Async(ctx context.Context) <-chan Result[[]byte] {
+	return Async(func() ([]byte, error) { return c.GetUserCredit2(ctx) })
+}
