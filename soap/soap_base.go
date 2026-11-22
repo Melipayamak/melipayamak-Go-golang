@@ -29,15 +29,18 @@ func NewSOAPClient(username, password string, httpClient *http.Client) *SOAPClie
 }
 
 const (
-	SOAPSendUrl     = "https://api.payamak-panel.com/post/Send.asmx"
-	SOAPReceiveUrl  = "https://api.payamak-panel.com/post/receive.asmx"
-	SOAPContactsUrl = "https://api.payamak-panel.com/post/contacts.asmx"
-	SOAPActionsUrl  = "https://api.payamak-panel.com/post/actions.asmx"
-	SOAPScheduleUrl = "https://api.payamak-panel.com/post/schedule.asmx"
-	SOAPTicketsUrl  = "https://api.payamak-panel.com/post/tickets.asmx"
-	SOAPUsersUrl    = "https://api.payamak-panel.com/post/users.asmx"
-	SOAPVoiceUrl    = "https://api.payamak-panel.com/post/voice.asmx"
-	SoapNamespace   = "http://tempuri.org/"
+	SOAPSendUrl      = "https://api.payamak-panel.com/post/Send.asmx"
+	SOAPReceiveUrl   = "https://api.payamak-panel.com/post/receive.asmx"
+	SOAPContactsUrl  = "https://api.payamak-panel.com/post/contacts.asmx"
+	SOAPActionsUrl   = "https://api.payamak-panel.com/post/actions.asmx"
+	SOAPScheduleUrl  = "https://api.payamak-panel.com/post/schedule.asmx"
+	SOAPTicketsUrl   = "https://api.payamak-panel.com/post/tickets.asmx"
+	SOAPUsersUrl     = "https://api.payamak-panel.com/post/users.asmx"
+	SOAPVoiceUrl     = "https://api.payamak-panel.com/post/voice.asmx"
+	SOAPNewBulksUrl  = "https://api.payamak-panel.com/post/newbulks.asmx"
+	SOAPSmartUrl     = "https://api.payamak-panel.com/post/Smartsms.asmx"
+	SOAPBlackListUrl = "https://api.payamak-panel.com/post/blacklist.asmx"
+	SoapNamespace    = "http://tempuri.org/"
 )
 
 type SOAPParam struct {

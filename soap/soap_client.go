@@ -1890,13 +1890,13 @@ func (c *SOAPClient) GetSendSMSWithSpeechTextStatus(ctx context.Context, recId i
 	return c.doRequest(ctx, SOAPVoiceUrl, "GetSendSMSWithSpeechTextStatus", body)
 }
 
-func (c *SOAPClient) SendBulkSpeechText(ctx context.Context, title string, bbody string, receivers string, dateToSend string, repeatCount int) ([]byte, error) {
+func (c *SOAPClient) SendBulkSpeechText(ctx context.Context, title string, _body string, receivers string, dateToSend string, repeatCount int) ([]byte, error) {
 
 	params := []SOAPParam{
 		{Name: "username", Value: c.username},
 		{Name: "password", Value: c.password},
 		{Name: "title", Value: title},
-		{Name: "body", Value: bbody},
+		{Name: "body", Value: _body},
 		{Name: "receivers", Value: receivers},
 		{Name: "DateToSend", Value: dateToSend},
 		{Name: "repeatCount", Value: repeatCount},
@@ -1984,4 +1984,511 @@ func (c *SOAPClient) UploadVoiceFile(ctx context.Context, title string, base64St
 	}
 
 	return c.doRequest(ctx, SOAPVoiceUrl, "UploadVoiceFile", body)
+}
+
+// v2
+func (c *SOAPClient) SendByBaseNumber3(ctx context.Context, text string, to string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "text", Value: text},
+		{Name: "to", Value: to},
+	}
+
+	body, err := buildSOAPEnvelope("SendByBaseNumber3", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPSendUrl, "SendByBaseNumber3", body)
+}
+
+func (c *SOAPClient) SendByBaseNumber4(ctx context.Context, text string, to string, bodyId int, smsPrice int) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "text", Value: text},
+		{Name: "to", Value: to},
+		{Name: "bodyId", Value: bodyId},
+		{Name: "smsPrice", Value: smsPrice},
+	}
+
+	body, err := buildSOAPEnvelope("SendByBaseNumber4", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPSendUrl, "SendByBaseNumber4", body)
+}
+
+func (c *SOAPClient) SendOtp2(ctx context.Context, to string, from string, code string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "to", Value: to},
+		{Name: "from", Value: from},
+		{Name: "code", Value: code},
+	}
+
+	body, err := buildSOAPEnvelope("SendOtp2", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPSendUrl, "SendOtp2", body)
+}
+
+func (c *SOAPClient) SendSms2(ctx context.Context, to []string, from string, text string, isflash bool, udh string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "from", Value: from},
+		SOAPArray("to", "string", to),
+		{Name: "isflash", Value: isflash},
+		{Name: "text", Value: text},
+		{Name: "udh", Value: udh},
+	}
+
+	body, err := buildSOAPEnvelope("SendSms2", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPSendUrl, "SendSms2", body)
+}
+
+func (c *SOAPClient) AddContact2(ctx context.Context, groupIds string, firstname string, lastname string, gender string, corporation string, mobilenumber string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "groupIds", Value: groupIds},
+		{Name: "firstname", Value: firstname},
+		{Name: "lastname", Value: lastname},
+		{Name: "gender", Value: gender},
+		{Name: "corporation", Value: corporation},
+		{Name: "mobilenumber", Value: mobilenumber},
+	}
+
+	body, err := buildSOAPEnvelope("AddContact2", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPContactsUrl, "AddContact2", body)
+}
+
+func (c *SOAPClient) ChangeContact2(ctx context.Context, contactId int, mobilenumber, firstname, lastname, nickname, corporation, phone, fax, email, gender string, province int, city int, address string, postalCode string, additionaltext string, descriptions string, contactStatus int, birthdate string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "contactId", Value: contactId},
+		{Name: "mobilenumber", Value: mobilenumber},
+		{Name: "firstname", Value: firstname},
+		{Name: "lastname", Value: lastname},
+		{Name: "nickname", Value: nickname},
+		{Name: "corporation", Value: corporation},
+		{Name: "phone", Value: phone},
+		{Name: "fax", Value: fax},
+		{Name: "email", Value: email},
+		{Name: "gender", Value: gender},
+		{Name: "province", Value: province},
+		{Name: "city", Value: city},
+		{Name: "address", Value: address},
+		{Name: "postalCode", Value: postalCode},
+		{Name: "additionaltext", Value: additionaltext},
+		{Name: "descriptions", Value: descriptions},
+		{Name: "contactStatus", Value: contactStatus},
+		{Name: "birthdate", Value: birthdate},
+	}
+
+	body, err := buildSOAPEnvelope("ChangeContact2", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPContactsUrl, "ChangeContact2", body)
+}
+
+func (c *SOAPClient) RemoveContact2(ctx context.Context, contactId, groupId int) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "contactId", Value: contactId},
+		{Name: "groupId", Value: groupId},
+	}
+
+	body, err := buildSOAPEnvelope("RemoveContact2", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPContactsUrl, "RemoveContact2", body)
+}
+
+func (c *SOAPClient) GetMultipleSMS3Deliveries(ctx context.Context, Ids []int64) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		SOAPArray("Id", "long", Ids),
+	}
+
+	body, err := buildSOAPEnvelope("GetMultipleSMS3Deliveries", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPActionsUrl, "GetMultipleSMS3Deliveries", body)
+}
+
+func (c *SOAPClient) AddScheduleSendByBaseNumber2(ctx context.Context, text, to, scheduleDate string, bodyId int) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "text", Value: text},
+		{Name: "to", Value: to},
+		{Name: "bodyId", Value: bodyId},
+		{Name: "scheduleDate", Value: scheduleDate},
+	}
+
+	body, err := buildSOAPEnvelope("AddScheduleSendByBaseNumber2", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPScheduleUrl, "AddScheduleSendByBaseNumber2", body)
+}
+
+func (c *SOAPClient) GetScheduleDetails(ctx context.Context, scheduleId int) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "scheduleId", Value: scheduleId},
+	}
+
+	body, err := buildSOAPEnvelope("GetScheduleDetails", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPScheduleUrl, "GetScheduleDetails", body)
+}
+
+func (c *SOAPClient) GetSendSpeechTextStatus(ctx context.Context, recId int64) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "recId", Value: recId},
+	}
+
+	body, err := buildSOAPEnvelope("GetSendSpeechTextStatus", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPVoiceUrl, "GetSendSpeechTextStatus", body)
+}
+
+func (c *SOAPClient) GetSendSpeechTextStatuses(ctx context.Context, recIds []int64) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		SOAPArray("recIds", "long", recIds),
+	}
+
+	body, err := buildSOAPEnvelope("GetSendSpeechTextStatuses", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPVoiceUrl, "GetSendSpeechTextStatuses", body)
+}
+
+func (c *SOAPClient) SendSpeechText(ctx context.Context, text, to string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "text", Value: text},
+		{Name: "to", Value: to},
+	}
+
+	body, err := buildSOAPEnvelope("SendSpeechText", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPVoiceUrl, "SendSpeechText", body)
+}
+
+func (c *SOAPClient) SendVoiceOtp(ctx context.Context, to, code string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "to", Value: to},
+		{Name: "code", Value: code},
+	}
+
+	body, err := buildSOAPEnvelope("SendVoiceOtp", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPVoiceUrl, "SendVoiceOtp", body)
+}
+
+func (c *SOAPClient) AddNumberBulk(ctx context.Context, from, title, message, receivers, DateToSend string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "from", Value: from},
+		{Name: "title", Value: title},
+		{Name: "message", Value: message},
+		{Name: "receivers", Value: receivers},
+		{Name: "DateToSend", Value: DateToSend},
+	}
+
+	body, err := buildSOAPEnvelope("AddNumberBulk", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPNewBulksUrl, "AddNumberBulk", body)
+}
+
+func (c *SOAPClient) AddNumberBulk2(ctx context.Context, from, _body string, to []string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "from", Value: from},
+		SOAPArray("to", "string", to),
+		{Name: "body", Value: _body},
+	}
+
+	body, err := buildSOAPEnvelope("AddNumberBulk2", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPNewBulksUrl, "AddNumberBulk2", body)
+}
+
+func (c *SOAPClient) GetBulkDeliveries(ctx context.Context, recIds []int64) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		SOAPArray("recIds", "string", recIds),
+	}
+
+	body, err := buildSOAPEnvelope("GetBulkDeliveries", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPNewBulksUrl, "GetBulkDeliveries", body)
+}
+
+func (c *SOAPClient) GetBulkDeliveries2(ctx context.Context, recId string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "recId", Value: recId},
+	}
+
+	body, err := buildSOAPEnvelope("GetBulkDeliveries2", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPNewBulksUrl, "GetBulkDeliveries2", body)
+}
+
+func (c *SOAPClient) GetBulkDetails(ctx context.Context, bulkdId int) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "bulkdId", Value: bulkdId},
+	}
+
+	body, err := buildSOAPEnvelope("GetBulkDetails", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPNewBulksUrl, "GetBulkDetails", body)
+}
+
+func (c *SOAPClient) SendSmsToContact(ctx context.Context, message, title, from, groupId, dateToSend string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "from", Value: from},
+		{Name: "message", Value: message},
+		{Name: "title", Value: title},
+		{Name: "groupId", Value: groupId},
+		{Name: "dateToSend", Value: dateToSend},
+	}
+
+	body, err := buildSOAPEnvelope("SendSmsToContact", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPNewBulksUrl, "SendSmsToContact", body)
+}
+
+func (c *SOAPClient) GetSmartSMSDeliveries(ctx context.Context, ids []int64) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		SOAPArray("Id", "string", ids),
+	}
+
+	body, err := buildSOAPEnvelope("GetSmartSMSDeliveries", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPSmartUrl, "GetSmartSMSDeliveries", body)
+}
+
+func (c *SOAPClient) GetSmartSMSDetails(ctx context.Context, id int64) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "Id", Value: id},
+	}
+
+	body, err := buildSOAPEnvelope("GetSmartSMSDetails", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPSmartUrl, "GetSmartSMSDetails", body)
+}
+
+func (c *SOAPClient) SendMultipleSmartSMS(ctx context.Context, to, text []string, from, fromSupportOne, fromSupportTwo string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		SOAPArray("to", "string", to),
+		SOAPArray("text", "string", text),
+		{Name: "from", Value: from},
+		{Name: "fromSupportOne", Value: fromSupportOne},
+		{Name: "fromSupportTwo", Value: fromSupportTwo},
+	}
+
+	body, err := buildSOAPEnvelope("SendMultipleSmartSMS", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPSmartUrl, "SendMultipleSmartSMS", body)
+}
+
+func (c *SOAPClient) SendSmartSMS(ctx context.Context, to, text, from, fromSupportOne, fromSupportTwo string) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "to", Value: to},
+		{Name: "text", Value: text},
+		{Name: "from", Value: from},
+		{Name: "fromSupportOne", Value: fromSupportOne},
+		{Name: "fromSupportTwo", Value: fromSupportTwo},
+	}
+
+	body, err := buildSOAPEnvelope("SendSmartSMS", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPSmartUrl, "SendSmartSMS", body)
+}
+
+func (c *SOAPClient) AddBlackList(ctx context.Context, number string, _type int) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "number", Value: number},
+		{Name: "type", Value: _type},
+	}
+
+	body, err := buildSOAPEnvelope("AddBlackList", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPBlackListUrl, "AddBlackList", body)
+}
+
+func (c *SOAPClient) AddMobile(ctx context.Context, listId, _type int, mobileNumbers []string, addBySms bool) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+		{Name: "listId", Value: listId},
+		{Name: "type", Value: _type},
+		SOAPArray("mobileNumbers", "string", mobileNumbers),
+		{Name: "addBySms", Value: addBySms},
+	}
+
+	body, err := buildSOAPEnvelope("AddMobile", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPBlackListUrl, "AddMobile", body)
+}
+
+func (c *SOAPClient) GetBlackLists(ctx context.Context) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+	}
+
+	body, err := buildSOAPEnvelope("GetBlackLists", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPBlackListUrl, "GetBlackLists", body)
+}
+
+func (c *SOAPClient) GetUserCredit2(ctx context.Context) ([]byte, error) {
+
+	params := []SOAPParam{
+		{Name: "username", Value: c.username},
+		{Name: "password", Value: c.password},
+	}
+
+	body, err := buildSOAPEnvelope("GetUserCredit2", params...)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.doRequest(ctx, SOAPUsersUrl, "GetUserCredit2", body)
 }

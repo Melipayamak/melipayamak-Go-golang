@@ -462,9 +462,9 @@ func (c *SOAPClient) GetSendSMSWithSpeechTextStatusAsync(ctx context.Context, re
 	return Async(func() ([]byte, error) { return c.GetSendSMSWithSpeechTextStatus(ctx, recId) })
 }
 
-func (c *SOAPClient) SendBulkSpeechTextAsync(ctx context.Context, title string, bbody string, receivers string, dateToSend string, repeatCount int) <-chan Result[[]byte] {
+func (c *SOAPClient) SendBulkSpeechTextAsync(ctx context.Context, title string, _body string, receivers string, dateToSend string, repeatCount int) <-chan Result[[]byte] {
 	return Async(func() ([]byte, error) {
-		return c.SendBulkSpeechText(ctx, title, bbody, receivers, dateToSend, repeatCount)
+		return c.SendBulkSpeechText(ctx, title, _body, receivers, dateToSend, repeatCount)
 	})
 }
 
