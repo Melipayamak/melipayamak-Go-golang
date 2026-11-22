@@ -14,7 +14,7 @@ func SendSMSAsync(username string, password string, to string, from string, text
 		"text":     text,
 		"isFlash":  strconv.FormatBool(isFlash),
 	}
-	go invoke(jsonData, "SendSMS")
+	go invoke(jsonData, RESTSendUrl, "SendSMS")
 }
 
 func SendByBaseNumberAsync(username string, password string, text string, to string, bodyId int64) {
@@ -26,7 +26,7 @@ func SendByBaseNumberAsync(username string, password string, text string, to str
 		"to":       to,
 		"bodyId":   strconv.FormatInt(bodyId, 10),
 	}
-	go invoke(jsonData, "BaseServiceNumber")
+	go invoke(jsonData, RESTSendUrl, "BaseServiceNumber")
 }
 
 func GetDeliveries2Async(username string, password string, recID int64) {
@@ -35,7 +35,7 @@ func GetDeliveries2Async(username string, password string, recID int64) {
 		"password": password,
 		"recID":    strconv.FormatInt(recID, 10),
 	}
-	go invoke(jsonData, "GetDeliveries2")
+	go invoke(jsonData, RESTSendUrl, "GetDeliveries2")
 }
 
 func GetMessagesAsync(username string, password string, location int, from string, index string, count bool) {
@@ -47,7 +47,7 @@ func GetMessagesAsync(username string, password string, location int, from strin
 		"Index":    index,
 		"Count":    strconv.FormatBool(count),
 	}
-	go invoke(jsonData, "GetMessages")
+	go invoke(jsonData, RESTSendUrl, "GetMessages")
 }
 
 func GetCreditAsync(username string, password string) {
@@ -55,7 +55,7 @@ func GetCreditAsync(username string, password string) {
 		"UserName": username,
 		"PassWord": password,
 	}
-	go invoke(jsonData, "GetCredit")
+	go invoke(jsonData, RESTSendUrl, "GetCredit")
 }
 
 func GetBasePriceAsync(username string, password string) {
@@ -63,7 +63,7 @@ func GetBasePriceAsync(username string, password string) {
 		"UserName": username,
 		"PassWord": password,
 	}
-	go invoke(jsonData, "GetBasePrice")
+	go invoke(jsonData, RESTSendUrl, "GetBasePrice")
 }
 
 func GetUserNumbersAsync(username string, password string) {
@@ -71,5 +71,5 @@ func GetUserNumbersAsync(username string, password string) {
 		"UserName": username,
 		"PassWord": password,
 	}
-	go invoke(jsonData, "GetUserNumbers")
+	go invoke(jsonData, RESTSendUrl, "GetUserNumbers")
 }
