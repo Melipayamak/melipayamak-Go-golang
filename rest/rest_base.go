@@ -3,8 +3,7 @@ package melipayamak
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -12,24 +11,25 @@ const (
 	RESTSendUrl = "https://rest.payamak-panel.com/api/SendSMS/"
 )
 
-func invoke(jsonData map[string]string, endpoint, op string) {
+func invoke(jsonData map[string]string, endpoint, op string) (string, error) {
+	jsonValue, err := json.Marshal(jsonData)
+	if err != nil {
+		return "", err
+	}
 
-	jsonValue, _ := json.Marshal(jsonData)
 	response, err := http.Post(endpoint+op, "application/json", bytes.NewBuffer(jsonValue))
 	if err != nil {
-		fmt.Printf("HTTP request failed: %s\n", err)
-		return
+		return "", err
 	}
 
 	defer response.Body.Close()
 
-	data, err := ioutil.ReadAll(response.Body)
+	data, err := io.ReadAll(response.Body)
 	if err != nil {
-		fmt.Println("Failed to read response:", err)
-		return
+		return "", err
 	}
 
-	fmt.Println(string(data))
+	return string(data), nil
 }
 
 func RESTArray[T any](values []T) string {
@@ -38,4 +38,9 @@ func RESTArray[T any](values []T) string {
 		return "[]"
 	}
 	return string(data)
+}
+
+type Result[T any] struct {
+	Value T
+	Err   error
 }

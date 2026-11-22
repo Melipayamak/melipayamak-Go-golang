@@ -4,7 +4,7 @@ import (
 	"strconv"
 )
 
-func SendSMSAsync(username string, password string, to string, from string, text string, isFlash bool) {
+func SendSMSAsync(username string, password string, to string, from string, text string, isFlash bool) <-chan Result[string] {
 
 	jsonData := map[string]string{
 		"username": username,
@@ -14,10 +14,16 @@ func SendSMSAsync(username string, password string, to string, from string, text
 		"text":     text,
 		"isFlash":  strconv.FormatBool(isFlash),
 	}
-	go invoke(jsonData, RESTSendUrl, "SendSMS")
+	result := make(chan Result[string], 1)
+	go func() {
+		response, err := invoke(jsonData, RESTSendUrl, "SendSMS")
+		result <- Result[string]{Value: response, Err: err}
+		close(result)
+	}()
+	return result
 }
 
-func SendByBaseNumberAsync(username string, password string, text string, to string, bodyId int64) {
+func SendByBaseNumberAsync(username string, password string, text string, to string, bodyId int64) <-chan Result[string] {
 
 	jsonData := map[string]string{
 		"username": username,
@@ -26,19 +32,31 @@ func SendByBaseNumberAsync(username string, password string, text string, to str
 		"to":       to,
 		"bodyId":   strconv.FormatInt(bodyId, 10),
 	}
-	go invoke(jsonData, RESTSendUrl, "BaseServiceNumber")
+	result := make(chan Result[string], 1)
+	go func() {
+		response, err := invoke(jsonData, RESTSendUrl, "BaseServiceNumber")
+		result <- Result[string]{Value: response, Err: err}
+		close(result)
+	}()
+	return result
 }
 
-func GetDeliveries2Async(username string, password string, recID int64) {
+func GetDeliveries2Async(username string, password string, recID int64) <-chan Result[string] {
 	jsonData := map[string]string{
 		"username": username,
 		"password": password,
 		"recID":    strconv.FormatInt(recID, 10),
 	}
-	go invoke(jsonData, RESTSendUrl, "GetDeliveries2")
+	result := make(chan Result[string], 1)
+	go func() {
+		response, err := invoke(jsonData, RESTSendUrl, "GetDeliveries2")
+		result <- Result[string]{Value: response, Err: err}
+		close(result)
+	}()
+	return result
 }
 
-func GetMessagesAsync(username string, password string, location int, from string, index string, count bool) {
+func GetMessagesAsync(username string, password string, location int, from string, index string, count bool) <-chan Result[string] {
 	jsonData := map[string]string{
 		"UserName": username,
 		"PassWord": password,
@@ -47,29 +65,70 @@ func GetMessagesAsync(username string, password string, location int, from strin
 		"Index":    index,
 		"Count":    strconv.FormatBool(count),
 	}
-	go invoke(jsonData, RESTSendUrl, "GetMessages")
+	result := make(chan Result[string], 1)
+	go func() {
+		response, err := invoke(jsonData, RESTSendUrl, "GetMessages")
+		result <- Result[string]{Value: response, Err: err}
+		close(result)
+	}()
+	return result
 }
 
-func GetCreditAsync(username string, password string) {
+func GetCreditAsync(username string, password string) <-chan Result[string] {
 	jsonData := map[string]string{
 		"UserName": username,
 		"PassWord": password,
 	}
-	go invoke(jsonData, RESTSendUrl, "GetCredit")
+	result := make(chan Result[string], 1)
+	go func() {
+		response, err := invoke(jsonData, RESTSendUrl, "GetCredit")
+		result <- Result[string]{Value: response, Err: err}
+		close(result)
+	}()
+	return result
 }
 
-func GetBasePriceAsync(username string, password string) {
+func GetBasePriceAsync(username string, password string) <-chan Result[string] {
 	jsonData := map[string]string{
 		"UserName": username,
 		"PassWord": password,
 	}
-	go invoke(jsonData, RESTSendUrl, "GetBasePrice")
+	result := make(chan Result[string], 1)
+	go func() {
+		response, err := invoke(jsonData, RESTSendUrl, "GetBasePrice")
+		result <- Result[string]{Value: response, Err: err}
+		close(result)
+	}()
+	return result
 }
 
-func GetUserNumbersAsync(username string, password string) {
+func GetUserNumbersAsync(username string, password string) <-chan Result[string] {
 	jsonData := map[string]string{
 		"UserName": username,
 		"PassWord": password,
 	}
-	go invoke(jsonData, RESTSendUrl, "GetUserNumbers")
+	result := make(chan Result[string], 1)
+	go func() {
+		response, err := invoke(jsonData, RESTSendUrl, "GetUserNumbers")
+		result <- Result[string]{Value: response, Err: err}
+		close(result)
+	}()
+	return result
+}
+
+func SendMultipleSMSAsync(username string, password string, from string, to []string, text []string) <-chan Result[string] {
+	jsonData := map[string]string{
+		"UserName": username,
+		"PassWord": password,
+		"From":     from,
+		"to":       RESTArray(to),
+		"text":     RESTArray(text),
+	}
+	result := make(chan Result[string], 1)
+	go func() {
+		response, err := invoke(jsonData, RESTSendUrl, "SendMultipleSMS")
+		result <- Result[string]{Value: response, Err: err}
+		close(result)
+	}()
+	return result
 }
