@@ -9,7 +9,10 @@ import (
 )
 
 const (
-	RESTSendUrl = "https://rest.payamak-panel.com/api/SendSMS/"
+	RESTSendUrl   = "https://rest.payamak-panel.com/api/SendSMS/"
+	RESTSmartUrl  = "https://rest.payamak-panel.com/api/SmartSMS/"
+	RESTSharedUrl = "https://rest.payamak-panel.com/api/ShareService/"
+	RESTVoiceUrl  = "https://rest.payamak-panel.com/api/Voice/"
 )
 
 func invoke(jsonData map[string]any, endpoint, op string) (string, error) {
